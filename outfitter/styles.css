@@ -1,0 +1,247 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    overflow: hidden; /* Prevent scrolling */
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#loading-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0); /* Transparent background */
+    z-index: 10;
+}
+
+#progress-container {
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0); /* Transparent background */
+    padding: 20px;
+    border-radius: 15px;
+    border: 5px solid black; /* Border around progress bar */
+}
+
+#progress-bar {
+    height: 20px;
+    background-color: black; /* Black progress bar */
+    width: 0;
+    transition: width 0.5s ease;
+}
+
+#progress-count {
+    margin-top: 10px;
+    color: black; /* Text color for count */
+}
+
+#main-content {
+    display: none; /* Hidden by default */
+    opacity: 0;
+    transition: opacity 1s ease;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#main-content.fade-in {
+    opacity: 1;
+}
+
+.frame {
+    width: 66.67vw; /* 2/3 of the viewport width */
+    height: 66.67vh; /* 2/3 of the viewport height */
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    position: relative;
+}
+
+.sidebar {
+    width: 60px;
+    height: 100%;
+    background-color: #FFFFFF; /* White color for sidebar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.2);
+    position: absolute; /* Sidebar positioned on the right side of the mainframe */
+    right: 0;
+    top: 0;
+}
+
+button {
+    width: 30px; /* Smaller size for the button */
+    height: 30px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px; /* Adjust font size for better fit */
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.clothing-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    position: absolute; /* For proper dragging behavior */
+    z-index: 1; /* Default z-index */
+}
+
+.clothing-item img {
+    width: 100px; /* Default width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.resizable {
+    width: 100px; /* Default width */
+    height: auto; /* Keep aspect ratio */
+    position: relative;
+}
+
+.resize-handle {
+    width: 12px; /* Smaller handle */
+    height: 12px;
+    background-color: black;
+    position: absolute;
+    bottom: -6px; /* Centered */
+    right: -6px; /* Centered */
+    cursor: se-resize;
+    border-radius: 50%; /* Make it a circle */
+    display: none; /* Hidden by default */
+}
+
+.lock-checkbox {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 12px; /* Match the resize handle */
+    height: 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: transparent;
+    border: 1px solid black;
+    appearance: none; /* Remove default checkbox style */
+    display: none;
+}
+
+.lock-checkbox:checked {
+    background-color: black;
+}
+
+.clothing-item:hover .lock-checkbox,
+.clothing-item:hover .resize-handle {
+    display: block; /* Show checkbox and resize handle on hover */
+}
+
+.clothing-item.active {
+    z-index: 10; /* Bring the active item to the front */
+}
+
+#add-clothing {
+    margin-top: 10px;
+    background-color: #28a745; /* Green color for the Add button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 24px;
+    width: 40px; /* Adjust the size of the Add button */
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#add-clothing:hover {
+    background-color: #218838;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+}
+
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    width: 300px;
+}
+
+.popup-content h2 {
+    margin-top: 0;
+}
+
+#clothing-type {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#add-item {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#add-item:hover {
+    background-color: #0056b3;
+}
+
+#close-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+#close-popup:hover {
+    background: #c82333;
+}
+

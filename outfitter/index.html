@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Outfit Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="loading-screen">
+        <div id="progress-container">
+            <div id="progress-bar"></div>
+            <div id="progress-count">0/0</div>
+        </div>
+    </div>
+    <div id="main-content">
+        <div class="frame">
+            <div class="clothing-item" id="shirt-item">
+                <input type="checkbox" class="lock-checkbox" id="lock-shirt">
+                <img id="shirt-image" class="resizable" src="">
+                <div class="resize-handle"></div>
+            </div>
+            <div class="clothing-item" id="pants-item">
+                <input type="checkbox" class="lock-checkbox" id="lock-pants">
+                <img id="pants-image" class="resizable" src="">
+                <div class="resize-handle"></div>
+            </div>
+            <div class="clothing-item" id="jacket-item">
+                <input type="checkbox" class="lock-checkbox" id="lock-jacket">
+                <img id="jacket-image" class="resizable" src="">
+                <div class="resize-handle"></div>
+            </div>
+            <button id="randomize">Re-randomize</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
